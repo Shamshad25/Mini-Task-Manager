@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { FaChevronCircleLeft, FaCross, FaTimes } from "react-icons/fa";
+import { FaChevronCircleLeft, } from "react-icons/fa";
 
 export default function Create() {
-    const [posts, setPosts] = useState([]);
     const [message, setMessage] = useState('');
     const [assign, setAssign] = useState('');
     const [date, setDate] = useState(null);
@@ -46,7 +45,7 @@ export default function Create() {
         data.append('priority', priority);
         data.append('assigned_to', assign);
         axios(config).then((response) => {
-            setPosts(response.data);
+
             navigator('/')
             console.log(response.data);
         });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FaPen, FaTrash } from 'react-icons/fa';
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -31,27 +31,32 @@ export default function ListTask() {
 
 
 
-    var config = {
-        method: 'get',
-        url: 'https://devza.com/tests/tasks/list',
-        headers: {
-            'AuthToken': 'UrM4YHgb1FcqEf1tuKwmAMMX5MxFZ12a'
-        }
-    };
 
 
-    const getAllTask = () => {
-        axios(config).then((response) => {
-            console.log(response.data.tasks);
-            setTasks(response.data.tasks);
-        })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+
+    const getAllTask = useCallback(
+
+        () => {
+            var config = {
+                method: 'get',
+                url: 'https://devza.com/tests/tasks/list',
+                headers: {
+                    'AuthToken': 'UrM4YHgb1FcqEf1tuKwmAMMX5MxFZ12a'
+                }
+            };
+            axios(config).then((response) => {
+                console.log(response.data.tasks);
+                setTasks(response.data.tasks);
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        [],
+    )
     useEffect(() => {
         getAllTask();
-    }, []);
+    }, [getAllTask]);
 
     const onEditClick = (task) => {
         setIsEditing(true);
