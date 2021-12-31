@@ -72,7 +72,7 @@ export default function ListTask() {
         var FormData = require('form-data');
         var data = new FormData();
         data.append('message', message);
-        data.append('due_date', date);
+        data.append('due_date', date + ' 12:12:12');
         data.append('priority', priority);
         data.append('assigned_to', assign);
         data.append('taskid', taskId);

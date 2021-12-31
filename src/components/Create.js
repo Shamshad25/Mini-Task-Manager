@@ -41,7 +41,7 @@ export default function Create() {
     const createTask = (e) => {
         e.preventDefault();
         data.append('message', message);
-        data.append('due_date', date);
+        data.append('due_date', date + ' 12:12:12');
         data.append('priority', priority);
         data.append('assigned_to', assign);
         axios(config).then((response) => {
